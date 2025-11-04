@@ -14,6 +14,15 @@ type RedirectPayer interface {
 	Purchase(ctx context.Context, req *TransactionRequest) (*PaymentResponse, error)
 	VerifyAndConfirm(ctx context.Context, r *http.Request, fetcher TransactionFetcher) (*VerificationResponse, error)
 }
+type PaymentResponse struct {
+	// فیلدهای درخواستی شما
+	Success        bool              `json:"success"`              // آیا درخواست موفق بود
+	Message        string            `json:"message"`              // پیام خطا یا موفقیت
+	PaymentURL     string            `json:"paymentURL,omitempty"` // آدرس درگاه (جایگزین PaymentURL)
+	Authority      string            `json:"authority,omitempty"`
+	RedirectMethod string            `json:"redirectMethod,omitempty"` // متد هدایت کاربر ("GET" or "POST")
+	RedirectParams map[string]string `json:"redirectParams,omitempty"` // پارامترها (مخصوصاً برای POST)
+}
 
 type Refundable interface {
 	Refund(ctx context.Context, req *RefundRequest) (*RefundResponse, error)
@@ -24,11 +33,6 @@ type TransactionRequest struct {
 	CallbackURL    string
 	Description    string
 	IdempotencyKey string
-}
-
-type PaymentResponse struct {
-	Authority  string
-	PaymentURL string
 }
 
 type TransactionFetcher func(ctx context.Context, authority string) (*OriginalTransaction, error)
@@ -52,6 +56,7 @@ type VerificationResponse struct {
 	Status       VerificationStatus
 	ReferenceID  string
 	CardNumber   string
+	Message      string
 	OriginalData map[string]interface{}
 }
 
