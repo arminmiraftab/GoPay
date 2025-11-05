@@ -6,7 +6,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
-	"gopay"
+	"github.com/arminmiraftab/GoPay"
 	"io"
 	"net/http"
 )
