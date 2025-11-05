@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="eeefcdea-09a8-4b5e-8c38-e0e3b4b534f9" name="sanam">
+        <fileTransfer rootFolder="/opt" accessType="SFTP" host="62.60.214.133" port="1050" sshConfigId="4e810b72-0032-4f73-81c2-ab87fa08c63e" sshConfig="armin@62.60.214.133:1050 agent" authAgent="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
